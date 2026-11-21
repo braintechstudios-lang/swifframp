@@ -2160,6 +2160,7 @@ document.addEventListener('click',e=>{ const a=e.target.closest('[data-go]'); if
 document.querySelectorAll('.fc').forEach((f,i)=>f.insertAdjacentHTML('beforeend',wBlob('fc'+i,[328,218,158][i],'fc-b2')));
 document.querySelectorAll('dialog .co-head').forEach((h,i)=>{ if(!h.closest('#promo')) h.insertAdjacentHTML('afterbegin',wBlob('dlg'+i,[218,328,32,268,158,188][i%6],'dl-b')); });
 $('#walBtn').insertAdjacentHTML('afterbegin',wBlob('wallet',148,'wal-b'));
+const OFFLINE='This opens when the full site goes live. For now, message us on Telegram.';
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* offer: PROMO mirrors promo.json on the server; the server checks the code again at checkout */
 let PROMO={code:'SWIFTSHADOW',percent:20,ends:'2026-11-30T23:59:00Z'}, promoClaimed=false, promoTimer=null;
@@ -2225,7 +2226,7 @@ $('#rvForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const err=$('#rvErr'), btn=$('#rvSend'), bad=(m,f)=>{ err.textContent=m; err.hidden=false; if(f) f.focus(); };
   const order=$('#rvOrder').value.trim(), mail=$('#rvMail').value.trim();
-  const post=async(path,body)=>{ const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); return [r.ok, await r.json().catch(()=>({}))]; };
+  const post=async(path,body)=>{ const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); return [r.ok, r.status===404||r.status===405?{error:OFFLINE}:await r.json().catch(()=>({}))]; };
   err.hidden=true;
   if(!RVOK){
     if(!order||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) return bad('Add your order number and the email you used at checkout.', $('#rvOrder'));
@@ -2324,7 +2325,7 @@ async function realCheckout(plan, coin, acct, mail, code){
   try{
     const r=await fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({plan,coin,account:acct,email:mail,code})});
     const j=await r.json().catch(()=>({}));
-    if(r.status===503||r.status===404){ btn.textContent='Payments open soon'; note.textContent='Crypto payments are not switched on yet. Please check back soon.'; return; }
+    if(r.status===503||r.status===404||r.status===405){ btn.textContent='Payments open soon'; note.textContent='Crypto payments are not switched on yet. Please check back soon.'; return; }
     if(!r.ok){ err.textContent=j.error||'The payment page could not be created. Try again in a minute.'; err.hidden=false; btn.textContent='Continue to crypto payment'; return; }
     history.replaceState(null,'','?order='+j.order+'#pricing');
     window.open(j.invoice_url,'_blank','noopener');
@@ -2568,7 +2569,7 @@ function pool(){
 (function(){ const f=document.getElementById('mgForm'); if(!f) return; const $=id=>document.getElementById(id), err=$('mgErr');
   f.addEventListener('submit',async e=>{ e.preventDefault(); err.hidden=true; const b=$('mgSend'); b.disabled=true;
     const body={name:$('mgName').value,firm:$('mgFirm').value,email:$('mgMail').value,contact:$('mgContact').value,broker:$('mgBroker').value,size:$('mgSize').value,note:$('mgNote').value,agree:$('mgAgree').checked};
-    let ok=false,j={}; try{ const r=await fetch('/api/managed/enquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); ok=r.ok; j=await r.json().catch(()=>({})); }catch(_){ j={error:'The server did not answer. Try again.'}; }
+    let ok=false,j={}; try{ const r=await fetch('/api/managed/enquiry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); ok=r.ok; j=await r.json().catch(()=>({})); if(r.status===404||r.status===405) j={error:OFFLINE}; }catch(_){ j={error:'The server did not answer. Try again.'}; }
     b.disabled=false;
     if(!ok){ err.textContent=j.error||'That did not go through. Try again.'; err.hidden=false; return; }
     f.hidden=true; $('mgDoneT').textContent=j.message||'We will reply by email.'; $('mgDone').hidden=false; });
@@ -2656,7 +2657,7 @@ function pool(){
   const f=g('mkForm'), err=g('mkErr');
   f.addEventListener('submit',async e=>{ e.preventDefault(); err.hidden=true; const v=id=>g(id).value.trim();
     const body={name:v('mkName'),seller:v('mkSeller'),email:v('mkMail'),contact:v('mkContact'),market:v('mkMarket'),price:v('mkPrice'),summary:v('mkSum'),about:v('mkAbout'),pf:v('mkPf'),dd:v('mkDd'),win:v('mkWin'),trades:v('mkTr'),period:v('mkPeriod'),proof:v('mkProof'),wallet:v('mkWallet'),network:g('mkNet').value,agree:g('mkAgree').checked};
-    g('mkSend').disabled=true; let ok=false,j={}; try{ const r=await fetch('/api/market/sell',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); ok=r.ok; j=await r.json().catch(()=>({})); }catch(_){ j={error:'The server did not answer. Try again.'}; }
+    g('mkSend').disabled=true; let ok=false,j={}; try{ const r=await fetch('/api/market/sell',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}); ok=r.ok; j=await r.json().catch(()=>({})); if(r.status===404||r.status===405) j={error:OFFLINE}; }catch(_){ j={error:'The server did not answer. Try again.'}; }
     g('mkSend').disabled=false;
     if(!ok){ err.textContent=j.error||'Could not send the listing.'; err.hidden=false; return; }
     f.innerHTML=`<p class="mini-h">Listing received</p><p class="co-note">${escH(j.message||'We will reply by email.')}</p>`; });
