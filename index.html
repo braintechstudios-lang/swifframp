@@ -1556,7 +1556,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     </div>
     <div class="plans" id="plans"></div>
     <div class="pay-row"><span>Accepted:</span><span class="tag"><svg class="cn" viewBox="0 0 24 24" aria-hidden="true"><use href="#c-usdt"/></svg>USDT · Solana</span><span class="tag"><svg class="cn" viewBox="0 0 24 24" aria-hidden="true"><use href="#c-btc"/></svg>Bitcoin</span><span class="tag"><svg class="cn" viewBox="0 0 24 24" aria-hidden="true"><use href="#c-eth"/></svg>Ethereum</span></div>
-    <p class="fine">Charged in your coin at the checkout rate. No refunds after download.</p>
+    <p class="fine">Charged in your coin at the checkout rate. All payments are final, no refunds.</p>
   </div>
 </section>
 <section class="block" id="install" data-v="install" hidden>
@@ -1588,14 +1588,14 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
       <details><summary>How were the results tested?</summary><p>In the MT5 strategy tester on every tick based on real ticks, 2 March to 18 November 2026, with spread and commission included.</p></details>
       <details><summary>What is Trade with us?</summary><p>A pool you fund with USDT, from $100. Profit is split 70/30 each week and losses are shared. You can lose part or all of your stake.</p></details>
       <details><summary>Can I sell my own EA here?</summary><p>Yes. Send a listing from the Sell page. We keep <i class="mkFee">15</i>% of each sale.</p></details>
-      <details><summary>Can I get a refund?</summary><p>Payments are final once the file is downloaded.</p></details>
+      <details><summary>Can I get a refund?</summary><p>No. All payments are final. Check the bot and your MT5 account number before you pay.</p></details>
     </div>
   </div>
 </section>
 <section class="block legal" id="terms" data-v="legal" hidden>
   <div class="wrap">
     <div class="head"><div><div class="eyebrow">Legal</div><h2>Terms, privacy and risk</h2><p>Last updated 21 November 2026. Plain English, no small print.</p></div></div>
-    <nav class="lg-tabs" aria-label="Legal pages"><a href="#terms">Terms of sale</a><a href="#refunds">Refunds</a><a href="#privacy">Privacy</a><a href="#risk">Risk disclosure</a></nav>
+    <nav class="lg-tabs" aria-label="Legal pages"><a href="#terms">Terms of sale</a><a href="#refunds">No refunds</a><a href="#privacy">Privacy</a><a href="#risk">Risk disclosure</a></nav>
     <article class="card lg">
       <h3>Terms of sale</h3>
       <h4>What you buy</h4>
@@ -1624,13 +1624,11 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
 <section class="block legal" id="refunds" data-v="legal" hidden>
   <div class="wrap">
     <article class="card lg">
-      <h3>Refunds</h3>
-      <p>Your licence key is issued as soon as your payment is confirmed, and the file can be copied once downloaded. So:</p>
-      <ul><li><b>After the file is downloaded</b>, the payment is final. By downloading, you agree that you lose any right to cancel.</li>
-      <li><b>Paid but not downloaded yet?</b> Message us within 14 days of paying and we refund you.</li>
-      <li><b>Wrong MT5 account number?</b> If you made a typo, message us with your order number and we issue the key for the right account.</li>
-      <li><b>Paid the wrong amount?</b> Underpayments are completed or refunded once the payment processor confirms them. Overpayments are refunded.</li></ul>
-      <p>Refunds are sent in the coin you paid with, to a wallet address you give us, at the US dollar value you paid, less the network fee. Losing trades are not a reason for a refund.</p>
+      <h3>No refunds</h3>
+      <p><b>All payments are final. We do not give refunds</b>, whether or not the file has been downloaded, and losing trades are not a reason for one. Your licence key is issued as soon as your payment is confirmed.</p>
+      <ul><li><b>Check before you pay:</b> the bot, the coin and your MT5 account number.</li>
+      <li><b>Mistyped your MT5 account number?</b> Message us with your order number and we issue the key for the right account. This is not a refund.</li>
+      <li><b>Paid less than the price?</b> The order completes once the rest is paid.</li></ul>
     </article>
   </div>
 </section>
@@ -1723,7 +1721,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     <p class="co-err" id="coErr" hidden></p>
     <button type="submit" class="btn primary wide" id="coPay">Continue to crypto payment</button>
     <p class="co-note" id="coNote">Next: the exact coin amount, wallet address and QR code. Once the payment is confirmed, the download button appears here and the link is emailed to you.</p>
-    <p class="co-note co-legal">By paying you agree to the <a href="#terms">Terms</a> and <a href="#refunds">Refund policy</a>.</p>
+    <p class="co-note co-legal">By paying you agree to the <a href="#terms">Terms</a> and the <a href="#refunds">no-refund policy</a>. All payments are final.</p>
   </form>
 </dialog>
 
@@ -1836,7 +1834,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     <div>
       <p><b>Risk disclosure.</b> Trading foreign exchange, gold and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose more than your deposit with some brokers. Backtest results are hypothetical: they are produced with the benefit of hindsight, do not include all real-world trading conditions, and do not guarantee future results. Demo results use virtual money. Past performance is not a reliable indicator of future results.</p>
       <p>Swifframp sells software, not investment advice. Check that your broker or prop firm allows expert advisors.</p>
-      <p class="ft-legal"><a href="#terms">Terms</a><a href="#refunds">Refunds</a><a href="#privacy">Privacy</a><a href="#risk">Risk disclosure</a></p>
+      <p class="ft-legal"><a href="#terms">Terms</a><a href="#refunds">No refunds</a><a href="#privacy">Privacy</a><a href="#risk">Risk disclosure</a></p>
     </div>
   </div>
 </footer>
@@ -2499,7 +2497,7 @@ setInterval(()=>{ sessions(); if(LIVE && LIVE.news && LIVE.news.state==='waiting
 
 
 /* dashboard: one view at a time */
-const VIEWS={top:['home','Home'],chart:['chart','Gold chart'],overview:['home','Home'],performance:['results','Results'],method:['results','Results'],live:['live','Live account'],reviews:['reviews','Reviews'],prop:['prop','Prop firms'],radar:['news','News desk'],pool:['pool','Trade with us'],managed:['managed','Managed accounts'],earnings:['earnings','Your earnings'],market:['market','EA marketplace'],sell:['market','EA marketplace'],pricing:['pricing','Pricing'],install:['install','Install'],faq:['faq','FAQ'],community:['community','Community'],terms:['legal','Terms'],refunds:['legal','Refunds'],privacy:['legal','Privacy'],risk:['legal','Risk disclosure']};
+const VIEWS={top:['home','Home'],chart:['chart','Gold chart'],overview:['home','Home'],performance:['results','Results'],method:['results','Results'],live:['live','Live account'],reviews:['reviews','Reviews'],prop:['prop','Prop firms'],radar:['news','News desk'],pool:['pool','Trade with us'],managed:['managed','Managed accounts'],earnings:['earnings','Your earnings'],market:['market','EA marketplace'],sell:['market','EA marketplace'],pricing:['pricing','Pricing'],install:['install','Install'],faq:['faq','FAQ'],community:['community','Community'],terms:['legal','Terms'],refunds:['legal','No refunds'],privacy:['legal','Privacy'],risk:['legal','Risk disclosure']};
 function navOpen(on){ document.body.classList.toggle('nav-open',on); $('#menuBtn').setAttribute('aria-expanded',on?'true':'false'); }
 function route(id){
   id=(id||'').replace('#','')||'top'; const V=VIEWS[id]||VIEWS.top, v=V[0]; let n=0, tgt=null;
