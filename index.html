@@ -546,7 +546,8 @@ section.block.v1{padding-top:40px}
 @media (max-width:900px){.tiles{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.tiles{grid-template-columns:1fr}}
 /* trade with us */
-.pool-how{list-style:none;counter-reset:ph;margin:0 0 14px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pool-how{list-style:none;counter-reset:ph;margin:0 0 14px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.pool-how{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:520px){.pool-how{grid-template-columns:minmax(0,1fr)}}
 .pool-how li{counter-increment:ph;padding:18px;display:flex;flex-direction:column;gap:6px}
 .pool-how li::before{content:counter(ph);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-family:var(--f-mono);font-size:13px;margin-bottom:6px}
 .pool-how b{font-family:var(--f-display);font-size:18px}
@@ -894,6 +895,7 @@ dialog#promo .pr-code.done{background:#2FCB7D;box-shadow:0 8px 30px rgba(47,203,
 .plan .pl-nm{display:flex;align-items:center;gap:12px;min-width:0}
 .pool-how li::before{color:#fff;width:34px;height:34px;font-weight:700;border-radius:58% 42% 55% 45%/48% 60% 40% 52%;background:radial-gradient(circle at 32% 26%,#7FA6FF,#1F5BE0 60%,#0A2E8F);box-shadow:0 5px 12px rgba(0,0,0,.45)}
 .pool-how li:nth-child(2)::before{border-radius:44% 56% 42% 58%/58% 44% 56% 42%;background:radial-gradient(circle at 32% 26%,#FFA6D6,#E0409A 60%,#8F1D5C)}
+.pool-how li:nth-child(4)::before{border-radius:56% 44% 48% 52%/50% 58% 42% 50%;background:radial-gradient(circle at 32% 26%,#D2B8FF,#7A4DFF 60%,#3B1F99)}
 .pool-how li:nth-child(3)::before{border-radius:52% 48% 60% 40%/42% 52% 48% 58%;background:radial-gradient(circle at 32% 26%,#FFD09B,#FF8A3D 60%,#A84A0C)}
 .pool-how li{transition:translate .2s}.pool-how li:hover{translate:0 -3px}.pool-how li:hover::before{animation:mkWob .6s ease}
 .tiles .tile:nth-child(6n+2) .ic{color:#FF7EC0}.tiles .tile:nth-child(6n+3) .ic{color:#FFA35C}.tiles .tile:nth-child(6n+4) .ic{color:#5EE0B0}.tiles .tile:nth-child(6n+5) .ic{color:#B48CFF}.tiles .tile:nth-child(6n) .ic{color:#FFD35C}
@@ -1046,6 +1048,7 @@ dialog .seg{align-self:center;background:rgba(0,0,0,.45);border-color:rgba(255,2
 .legal#risk .lg{background:var(--grain),radial-gradient(60% 40% at 100% 0%,rgba(255,138,61,.28),transparent 70%),#0C0C10;background-blend-mode:overlay,normal,normal}
 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}.ft-legal a{color:#C9CCDA;font-size:13px}.ft-legal a:hover{color:#fff}
 .co-legal a{color:#C9CCDA}
+.pl-locked{margin:0;padding:12px 16px;border-radius:18px;background:rgba(255,179,107,.12);color:#FFD3A8;font-size:14px}
 body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90% 140% at 0% 100%,#1F5BE0,transparent 70%),radial-gradient(80% 140% at 100% 0%,#E0409A,transparent 70%),radial-gradient(60% 120% at 60% 120%,#FF8A3D,transparent 70%),#15161C;background-blend-mode:overlay,normal,normal,normal,normal;color:#fff;border-color:transparent}
 .mk-hero h3{margin:0;font-size:24px}.mk-hero .mk-id span{font-size:14px}
 .mk-price{font-family:var(--f-display);font-size:28px;font-weight:700}
@@ -1435,13 +1438,14 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
 <section class="block" id="pool" data-v="pool" hidden>
   <div class="wrap">
     <div class="head">
-      <div><div class="eyebrow" id="plState">Not open yet</div><h2>Trade with us</h2><p>Fund the pool in USDT. Our bots trade it. Profit is shared every week.</p></div>
+      <div><div class="eyebrow" id="plState">Not open yet</div><h2>Trade with us</h2><p>Invite only, for people we know. Our bots trade the pool and profit is shared every week.</p></div>
       <div class="pl-act"><button type="button" class="btn primary" id="plJoin">Join the waitlist</button><button type="button" class="btn ghost-light" id="plSign">Member sign in</button></div>
     </div>
     <dl class="card kpis k4" id="plKpis"></dl>
     <div class="card pl-me" id="plMe" hidden></div>
     <ol class="pool-how">
       <li class="card"><b>Connect Phantom</b><span>Your connected wallet is your account. Payouts go to it.</span></li>
+      <li class="card"><b>Get your access key</b><span>We only invite people we know. Your key from us unlocks deposits.</span></li>
       <li class="card"><b>Fund the pool</b><span>Send USDT on Solana, from $<i class="plMin">100</i>. It trades from the next Monday.</span></li>
       <li class="card"><b>Get paid weekly</b><span><i class="plShare">70</i>% of your profit goes to your wallet each week.</span></li>
     </ol>
@@ -1474,6 +1478,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     </table></div>
     <details class="more"><summary>Pool terms</summary>
       <ul class="pl-terms">
+        <li>The pool is invite only. Anyone can make an account, but you need an access key from us before you can add funds. Each key works once.</li>
         <li>You sign up by connecting a Phantom wallet. All your payouts go to that wallet.</li>
         <li>You send USDT on Solana to Swifframp's wallet. Swifframp holds it and trades it.</li>
         <li>A confirmed deposit starts trading at the next weekly start, Monday 00:00 UTC.</li>
@@ -1751,7 +1756,8 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     <form id="plJoinF" novalidate hidden>
       <label class="fld" for="plMail">Email for payout notices<input id="plMail" type="email" autocomplete="email"></label>
       <div class="pl-wal"><span>Connected wallet · your payouts go here</span><code id="plWalV"></code></div>
-      <label class="fld" for="plAmt">Stake in USDT<input id="plAmt" type="number" inputmode="decimal" min="100" step="1" value="100"></label>
+      <label class="fld" for="plKey">Access key from us (optional)<input id="plKey" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="SWF-XXXX-XXXX-XXXX"></label>
+      <p class="co-note" style="margin:-6px 0 0">No key yet? Create your account now and add the key when we send it.</p>
       <label class="pl-chk"><input type="checkbox" id="plAgree"><span>I have read the pool terms. I can lose part or all of my stake.</span></label>
       <button type="submit" class="btn primary wide">Create my account</button>
     </form>
@@ -1760,6 +1766,11 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
       <a class="btn primary wide" href="https://phantom.app/download" target="_blank" rel="noopener">Get Phantom</a>
       <a class="btn ghost-light wide" id="plDeep" href="https://phantom.app/" target="_blank" rel="noopener">On a phone? Open this page in the Phantom app</a>
     </div>
+    <form id="plKeyF" novalidate hidden>
+      <p class="co-note" style="margin:0">Trade with us is for people we know. Ask us for an access key, then enter it here to unlock deposits.</p>
+      <label class="fld" for="plKeyIn">Access key<input id="plKeyIn" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="SWF-XXXX-XXXX-XXXX"></label>
+      <button type="submit" class="btn primary wide">Unlock my account</button>
+    </form>
     <form id="plAddF" novalidate hidden>
       <label class="fld" for="plAdd">Amount in USDT<input id="plAdd" type="number" inputmode="decimal" min="100" step="1" value="100"></label>
       <button type="submit" class="btn primary wide">Get payment details</button>
@@ -2533,7 +2544,7 @@ async function pApi(path,body){
   const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.error||'That did not work. Try again.'); return j;
 }
 function pShow(pane,title){
-  ['plConn','plJoinF','plNoPh','plAddF','plPayF','plWdF','plDone'].forEach(id=>$('#'+id).hidden=id!==pane);
+  ['plConn','plJoinF','plNoPh','plKeyF','plAddF','plPayF','plWdF','plDone'].forEach(id=>$('#'+id).hidden=id!==pane);
   $('#plTitle').textContent=title; $('#plErr').hidden=true; const d=$('#plDlg'); if(!d.open){ if(d.showModal) d.showModal(); else d.setAttribute('open',''); }
 }
 function pErr(e){ $('#plErr').textContent=e.message||String(e); $('#plErr').hidden=false; }
@@ -2555,7 +2566,7 @@ async function pConnect(){
     const sg=await ph.signMessage(new TextEncoder().encode(c.message),'utf8');
     const j=await pApi('/api/pool/connect',{wallet:w,sig:Array.from(sg.signature||sg).map(b=>b.toString(16).padStart(2,'0')).join('')});
     if(j.member){ PAUTH={id:j.id,code:j.code}; await pMe(); if($('#plDlg').open) $('#plDlg').close(); $('#plMe').scrollIntoView({block:'start'}); }
-    else if(POOL&&POOL.open){ PTICKET=j.ticket; $('#plWalV').textContent=w; $('#plAmt').min=POOL.min; $('#plAmt').value=POOL.min; pShow('plJoinF','Join the pool'); }
+    else if(POOL&&POOL.open){ PTICKET=j.ticket; $('#plWalV').textContent=w; $('#plKey').value=''; pShow('plJoinF','Create your account'); }
     else pDone('This wallet has no pool account, and the pool is not open yet.','No account found');
   }catch(e){ pDone(e&&e.code===4001?'You cancelled the request in Phantom.':((e&&e.message)||'Phantom did not connect. Try again.'),'Not connected'); }
   finally{ PBUSY=false; poolRender(); }
@@ -2567,7 +2578,8 @@ function pMeCard(){
   const k=[['Trading stake',pUsd(m.stake)],['Starts next week',pUsd(m.starting)],['Profit earned',pUsd(m.earned)],['Loss to recover',pUsd(m.to_recover)]];
   const wd=m.withdrawals[0];
   box.innerHTML=`<div class="pl-me-h"><p class="mini-h">Your account · ${escH(m.id)} · pays to ${escH(m.wallet)}</p>
-      <div class="pl-act"><button type="button" class="btn primary" id="plAddB">Add funds</button><button type="button" class="btn ghost-light" id="plWdB">Withdraw</button><button type="button" class="btn ghost-light" id="plOut">Sign out</button></div></div>
+      <div class="pl-act">${m.active?'<button type="button" class="btn primary" id="plAddB">Add funds</button>':'<button type="button" class="btn primary" id="plKeyB">Enter access key</button>'}<button type="button" class="btn ghost-light" id="plWdB">Withdraw</button><button type="button" class="btn ghost-light" id="plOut">Sign out</button></div></div>
+    ${m.active?'':'<p class="pl-locked">Your account is waiting for an access key. We only invite people we know: ask us for a key, then enter it here to add funds.</p>'}
     <dl class="kpis k4">${k.map(x=>`<div><dt>${x[0]}</dt><dd class="num">${x[1]}</dd></div>`).join('')}</dl>
     ${m.due?`<p class="fine" style="margin:0">${pUsd(m.due)} is waiting to be sent to your wallet.</p>`:''}
     ${wd?`<p class="fine" style="margin:0">Withdrawal of ${wd.amount==null?'your whole stake':pUsd(wd.amount)} requested. It is paid after this week is settled. <button type="button" class="lnk" id="plWdX">Cancel it</button></p>`:''}
@@ -2575,7 +2587,8 @@ function pMeCard(){
       m.deposits.map(d=>`<tr><td class="num">${pDay(d.created)}</td><td class="num">${escH(d.id)}</td><td class="r num">${pUsd(d.amount)}</td><td>${d.status==='confirmed'?(d.period?'Trading':'Confirmed · starts '+pDay(m.next_start)):st[d.status]||escH(d.status)}</td><td class="r">${d.status==='waiting'?`<span class="t-act"><button type="button" class="tb go" data-pay="${escH(d.id)}" data-amt="${d.amount}">Pay now <span aria-hidden="true">→</span></button><button type="button" class="tb" data-cancel="${escH(d.id)}">Cancel</button></span>`:''}</td></tr>`).join('')||'<tr><td colspan="5" style="color:var(--muted)">No deposits yet.</td></tr>'}</tbody></table></div>
     <h4>Payouts</h4><div class="tbl-wrap"><table><thead><tr><th>Week</th><th>Type</th><th class="r">Amount</th><th>Status</th></tr></thead><tbody>${
       m.payouts.map(p=>`<tr><td class="num">${escH(p.period)}</td><td>${p.kind==='profit'?'Profit':'Withdrawal'}</td><td class="r num">${pUsd(p.amount)}</td><td>${p.status==='paid'?'Sent':'Waiting to be sent'}</td></tr>`).join('')||`<tr><td colspan="4">${wEmpty('No payouts yet.')}</td></tr>`}</tbody></table></div>`;
-  $('#plAddB').onclick=()=>{ if(!m.open) return pDone('The pool is not taking deposits right now.'); $('#plAdd').min=m.min; $('#plAdd').value=m.min; pShow('plAddF','Add funds'); };
+  if(!m.active) $('#plKeyB').onclick=()=>{ $('#plKeyIn').value=''; pShow('plKeyF','Enter your access key'); };
+  if(m.active) $('#plAddB').onclick=()=>{ if(!m.open) return pDone('The pool is not taking deposits right now.'); $('#plAdd').min=m.min; $('#plAdd').value=m.min; pShow('plAddF','Add funds'); };
   $('#plWdB').onclick=()=>{ $('#plWd').value=''; $('#plWd').disabled=false; $('#plWdAll').checked=false; pShow('plWdF','Withdraw'); };
   $('#plOut').onclick=()=>{ PAUTH=null; PME=null; try{ const ph=swPhantom(); ph&&ph.disconnect(); }catch(_){} poolRender(); };
   if(wd) $('#plWdX').onclick=async()=>{ try{ await pApi('/api/pool/withdraw-cancel'); await pMe(); }catch(e){ pDone(e.message); } };
@@ -2657,7 +2670,10 @@ function pool(){
   $('#plJoin').onclick=()=>{ if(!(POOL&&POOL.open)) return window.open('https://t.me/+WGTC4BvDl2w4OTE0','_blank','noopener'); pAsk(); };
   $('#cnNo').onclick=()=>$('#plDlg').close(); $('#cnYes').onclick=()=>pConnect();
   $('#plSign').onclick=pConnect;
-  $('#plJoinF').onsubmit=async e=>{ e.preventDefault(); try{ const r=await pApi('/api/pool/join',{email:$('#plMail').value,ticket:PTICKET,amount:$('#plAmt').value,agree:$('#plAgree').checked}); PAUTH={id:r.id,code:r.code}; pPay(r,true); PTICKET=null; pMe().catch(()=>{}); loadPool(); }catch(x){ pErr(x); } };
+  $('#plJoinF').onsubmit=async e=>{ e.preventDefault(); try{ const r=await pApi('/api/pool/join',{email:$('#plMail').value,ticket:PTICKET,key:$('#plKey').value,agree:$('#plAgree').checked}); PAUTH={id:r.id,code:r.code}; PTICKET=null; await pMe().catch(()=>{}); loadPool();
+      if(r.active){ $('#plAdd').min=POOL.min; $('#plAdd').value=POOL.min; pShow('plAddF','Account ready · add funds'); }
+      else pDone(r.key_error?`Your account ${r.id} is made, but the key did not work: ${r.key_error} You can enter it again from your account.`:`Your account ${r.id} is made. To add funds you need an access key from us. When we send it, sign in and choose Enter access key.`,'Account created',!r.key_error); }catch(x){ pErr(x); } };
+  $('#plKeyF').onsubmit=async e=>{ e.preventDefault(); try{ await pApi('/api/pool/activate',{key:$('#plKeyIn').value}); await pMe(); pDone('Your account is unlocked. You can add funds now.','Unlocked',true); }catch(x){ pErr(x); } };
   $('#plAddF').onsubmit=async e=>{ e.preventDefault(); try{ pPay(await pApi('/api/pool/deposit',{amount:$('#plAdd').value}),false); pMe().catch(()=>{}); }catch(x){ pErr(x); } };
   $('#plPayF').onsubmit=async e=>{ e.preventDefault(); try{ await pApi('/api/pool/tx',{deposit:PDEP,txid:$('#plTx').value}); await pMe(); pDone('Thanks. We check each transfer by hand. Once confirmed, it starts trading the next Monday.','Successful',true); }catch(x){ pErr(x); } };
   $('#plWdAll').onchange=()=>{ $('#plWd').disabled=$('#plWdAll').checked; };
