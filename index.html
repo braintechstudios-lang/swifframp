@@ -1049,6 +1049,7 @@ dialog .seg{align-self:center;background:rgba(0,0,0,.45);border-color:rgba(255,2
 .ft-legal{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}.ft-legal a{color:#C9CCDA;font-size:13px}.ft-legal a:hover{color:#fff}
 .co-legal a{color:#C9CCDA}
 .pl-locked{margin:0;padding:12px 16px;border-radius:18px;background:rgba(255,179,107,.12);color:#FFD3A8;font-size:14px}
+.pl-clean{color:#FFB36B!important;font-weight:600}
 body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90% 140% at 0% 100%,#1F5BE0,transparent 70%),radial-gradient(80% 140% at 100% 0%,#E0409A,transparent 70%),radial-gradient(60% 120% at 60% 120%,#FF8A3D,transparent 70%),#15161C;background-blend-mode:overlay,normal,normal,normal,normal;color:#fff;border-color:transparent}
 .mk-hero h3{margin:0;font-size:24px}.mk-hero .mk-id span{font-size:14px}
 .mk-price{font-family:var(--f-display);font-size:28px;font-weight:700}
@@ -1481,6 +1482,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
         <li>The pool is invite only. Anyone can make an account, but you need an access key from us before you can add funds. Each key works once.</li>
         <li>You sign up by connecting a Phantom wallet. All your payouts go to that wallet.</li>
         <li>You send USDT on Solana to Swifframp's wallet. Swifframp holds it and trades it.</li>
+        <li><b>No fraudulent funds.</b> Send only money that is legally yours, from your own wallet or your own exchange account. Stolen, scammed, hacked or someone else's funds are not accepted. We may ask where the money came from, refuse any transfer that looks suspicious, and close the account.</li>
         <li>A confirmed deposit starts trading at the next weekly start, Monday 00:00 UTC.</li>
         <li>Each week's profit is split by stake size. <i class="plShare">70</i>% is paid to your wallet. The rest is Swifframp's fee.</li>
         <li>In a losing week every stake drops by the same percent. No fee is charged.</li>
@@ -1590,6 +1592,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
       <details><summary>Will it win every month?</summary><p>No. Expect losing days and weeks. Trade only money you can afford to lose.</p></details>
       <details><summary>Are updates free?</summary><p>Yes, for the version you bought.</p></details>
       <details><summary>How do I pay?</summary><p>In crypto: USDT, Bitcoin or Ethereum. No cards.</p></details>
+      <details><summary>Can I pay with someone else's crypto?</summary><p>No. Pay only from your own wallet or exchange account, with money that is legally yours. Fraudulent or third-party funds are refused and the order or account is cancelled.</p></details>
       <details><summary>How were the results tested?</summary><p>In the MT5 strategy tester on every tick based on real ticks, 2 March to 18 November 2026, with spread and commission included.</p></details>
       <details><summary>What is Trade with us?</summary><p>A pool you fund with USDT, from $100. Profit is split 70/30 each week and losses are shared. You can lose part or all of your stake.</p></details>
       <details><summary>Can I sell my own EA here?</summary><p>Yes. Send a listing from the Sell page. We keep <i class="mkFee">15</i>% of each sale.</p></details>
@@ -1615,6 +1618,8 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
       <p>Check that your prop firm allows EAs before you run one. Prop results on this site are simulations from backtest trades. They do not promise that you will pass a challenge.</p>
       <h4>Payments</h4>
       <p>We take USDT on Solana, Bitcoin and Ethereum through our payment processor, NOWPayments. Prices are in US dollars. Network fees are paid by the sender. An offer code gives the stated discount on our own bots only, one code per order, until the end date shown.</p>
+      <h4>No fraudulent funds</h4>
+      <p>Pay only with money that is legally yours, from a wallet or exchange account in your own name. We do not accept stolen, scammed, hacked or laundered funds, or payments made with someone else's money or account. If a payment looks fraudulent or is flagged, we refuse it, cancel any licence or pool account linked to it, and may report it where the law requires. Anything we return goes back only to the wallet it came from, less network fees.</p>
       <h4>EA marketplace</h4>
       <p>EAs from other builders are sold by those builders. We check each listing before it shows and take a fee from each sale, but the builder is responsible for their EA and its figures. A listing is marked “Verified” only after we ran the EA ourselves.</p>
       <h4>Trade with us and managed accounts</h4>
@@ -1726,7 +1731,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     <p class="co-err" id="coErr" hidden></p>
     <button type="submit" class="btn primary wide" id="coPay">Continue to crypto payment</button>
     <p class="co-note" id="coNote">Next: the exact coin amount, wallet address and QR code. Once the payment is confirmed, the download button appears here and the link is emailed to you.</p>
-    <p class="co-note co-legal">By paying you agree to the <a href="#terms">Terms</a> and the <a href="#refunds">no-refund policy</a>. All payments are final.</p>
+    <p class="co-note co-legal">By paying you agree to the <a href="#terms">Terms</a> and the <a href="#refunds">no-refund policy</a>. All payments are final. No fraudulent or third-party funds.</p>
   </form>
 </dialog>
 
@@ -1779,7 +1784,8 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
       <div class="pl-pay"><span>Send exactly</span><b class="num" id="plPayAmt"></b><span>to this wallet</span><code id="plPayWal"></code><button type="button" class="btn ghost-light" id="plCopy">Copy address</button></div>
       <label class="fld" for="plTx">Transaction ID, after you send<input id="plTx" autocomplete="off" spellcheck="false"></label>
       <button type="submit" class="btn primary wide">I have sent it</button>
-      <p class="co-note">Send only USDT on the Solana network. We check each transfer by hand before it counts.</p>
+      <p class="co-note">Send only USDT on the Solana network, from your own wallet or your own exchange account. We check each transfer by hand before it counts.</p>
+      <p class="co-note pl-clean">No fraudulent funds. Stolen, scammed or third-party money is refused and the account is closed.</p>
     </form>
     <form id="plWdF" novalidate hidden>
       <label class="fld" for="plWd">Amount in USDT<input id="plWd" type="number" inputmode="decimal" min="1" step="1"></label>
