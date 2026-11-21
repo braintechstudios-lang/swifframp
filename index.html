@@ -2091,7 +2091,7 @@ function calendar(){
 function renderLive(L, realAcct){
   const days=L.daily||[], tot=days.reduce((a,x)=>a+x.a+x.b,0), n=days.reduce((a,x)=>a+x.n,0), w=days.reduce((a,x)=>a+x.w,0);
   const best=days.length?Math.max(...days.map(x=>x.a+x.b)):0, today=days.length?days[days.length-1]:null;
-  const k=[['Total P&L',sgn(tot)],['Today',today?sgn(today.a+today.b):'—'],['Best day',sgn(best)],['Win rate',n?Math.round(100*w/n)+'%':'—'],['Trades',n.toLocaleString()],['Days traded',days.length]];
+  const k=[['Total P&L',sgn(tot)],[today&&today.d===(LIVE&&LIVE.account?new Date(LIVE.account.server_time*1000):new Date()).toISOString().slice(0,10)?'Today':(today?'Last day · '+dNice(today.d).replace(/ \d{4}$/,''):'Today'),today?sgn(today.a+today.b):'—'],['Best day',sgn(best)],['Win rate',n?Math.round(100*w/n)+'%':'—'],['Trades',n.toLocaleString()],['Days traded',days.length]];
   $('#liveKpis').innerHTML=k.map(x=>`<div><dt>${x[0]}</dt><dd class="num ${x[0]!=='Trades'&&x[0]!=='Days traded'&&x[0]!=='Win rate'?(x[1].startsWith('+')?'pos':x[1].startsWith('−')?'neg':''):''}">${x[1]}</dd></div>`).join('');
   CAL.days=days; if(!CAL.sel&&today){CAL.sel=today.d;} if(CAL.ym==null&&today){CAL.ym=today.d.slice(0,7);} calendar();
   $('#liveBots').innerHTML=(L.bots||[]).map(b=>`<div><span>${b.name} · ${b.n} trades · ${b.n?Math.round(100*b.w/b.n):0}% won</span><b class="num ${b.net>=0?'pos':'neg'}">${sgn(b.net)}</b></div>`).join('');
