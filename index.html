@@ -1028,6 +1028,24 @@ dialog .seg{align-self:center;background:rgba(0,0,0,.45);border-color:rgba(255,2
 .mlt-c.scl-c{height:auto;aspect-ratio:640/220}
 .scl-c path{fill:none;stroke:#FFB36B;stroke-width:2.5}.scl-c line{stroke:rgba(255,255,255,.08);vector-effect:non-scaling-stroke}.scl-c text{fill:#7F88A6;font-size:11px}
 .scl code{font-size:12px;background:rgba(255,255,255,.08);padding:2px 7px;border-radius:999px}
+/* legal pages */
+.legal .wrap{max-width:860px}
+.legal+.legal{padding-top:0}
+.lg-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.lg-tabs a{padding:9px 16px;border-radius:999px;background:#141419;color:#C9CCDA;text-decoration:none;font-size:14px;font-weight:600;transition:background .2s,color .2s}
+.lg-tabs a:hover{background:linear-gradient(110deg,#1F5BE0,#7A4DFF);color:#fff}
+.lg{padding:clamp(22px,3.4vw,40px);border-radius:30px;scroll-margin-top:80px;line-height:1.65}
+.lg h3{font:800 clamp(24px,3vw,32px)/1.15 var(--f-display);margin:0 0 8px}
+.lg h4{font-size:16px;font-weight:700;margin:22px 0 4px;color:#fff}
+.lg p,.lg li{color:#C9CCDA;font-size:15px}.lg p{margin:6px 0}
+.lg ul{margin:8px 0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.lg b{color:#fff}
+.legal#terms .lg{background:var(--grain),radial-gradient(60% 30% at 0% 0%,rgba(0,71,204,.35),transparent 70%),#0C0C10;background-blend-mode:overlay,normal,normal}
+.legal#refunds .lg{background:var(--grain),radial-gradient(60% 40% at 100% 0%,rgba(224,64,154,.28),transparent 70%),#0C0C10;background-blend-mode:overlay,normal,normal}
+.legal#privacy .lg{background:var(--grain),radial-gradient(60% 30% at 0% 0%,rgba(94,224,176,.22),transparent 70%),#0C0C10;background-blend-mode:overlay,normal,normal}
+.legal#risk .lg{background:var(--grain),radial-gradient(60% 40% at 100% 0%,rgba(255,138,61,.28),transparent 70%),#0C0C10;background-blend-mode:overlay,normal,normal}
+.ft-legal{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px}.ft-legal a{color:#C9CCDA;font-size:13px}.ft-legal a:hover{color:#fff}
+.co-legal a{color:#C9CCDA}
 body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90% 140% at 0% 100%,#1F5BE0,transparent 70%),radial-gradient(80% 140% at 100% 0%,#E0409A,transparent 70%),radial-gradient(60% 120% at 60% 120%,#FF8A3D,transparent 70%),#15161C;background-blend-mode:overlay,normal,normal,normal,normal;color:#fff;border-color:transparent}
 .mk-hero h3{margin:0;font-size:24px}.mk-hero .mk-id span{font-size:14px}
 .mk-price{font-family:var(--f-display);font-size:28px;font-weight:700}
@@ -1574,6 +1592,85 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     </div>
   </div>
 </section>
+<section class="block legal" id="terms" data-v="legal" hidden>
+  <div class="wrap">
+    <div class="head"><div><div class="eyebrow">Legal</div><h2>Terms, privacy and risk</h2><p>Last updated 21 November 2026. Plain English, no small print.</p></div></div>
+    <nav class="lg-tabs" aria-label="Legal pages"><a href="#terms">Terms of sale</a><a href="#refunds">Refunds</a><a href="#privacy">Privacy</a><a href="#risk">Risk disclosure</a></nav>
+    <article class="card lg">
+      <h3>Terms of sale</h3>
+      <h4>What you buy</h4>
+      <p>You buy a licence to use one Swifframp expert advisor (EA) for MetaTrader 5. It is a one-time payment. The licence key works on the one MT5 account number you enter at checkout.</p>
+      <h4>What you get</h4>
+      <ul><li>The EA file (.ex5) and its set files.</li><li>A licence key tied to your MT5 account number.</li><li>Free updates for the version you bought.</li></ul>
+      <h4>What you may not do</h4>
+      <ul><li>Share, resell or publish the file or your licence key.</li><li>Try to remove the licence check or take the EA apart.</li><li>Use the EA on an account you are not allowed to trade.</li></ul>
+      <h4>Software, not advice</h4>
+      <p>Swifframp sells trading software. We do not manage your money, give personal investment advice or tell you what to buy or sell. You decide whether to run the EA, on which account and at what size. You are responsible for your broker, your account settings and your trades.</p>
+      <h4>Prop firm accounts</h4>
+      <p>Check that your prop firm allows EAs before you run one. Prop results on this site are simulations from backtest trades. They do not promise that you will pass a challenge.</p>
+      <h4>Payments</h4>
+      <p>We take USDT on Solana, Bitcoin and Ethereum through our payment processor, NOWPayments. Prices are in US dollars. Network fees are paid by the sender. An offer code gives the stated discount on our own bots only, one code per order, until the end date shown.</p>
+      <h4>EA marketplace</h4>
+      <p>EAs from other builders are sold by those builders. We check each listing before it shows and take a fee from each sale, but the builder is responsible for their EA and its figures. A listing is marked “Verified” only after we ran the EA ourselves.</p>
+      <h4>Trade with us and managed accounts</h4>
+      <p>The pool and managed accounts have their own terms, shown on those pages. Read them before you send any money. You can lose part or all of what you put in.</p>
+      <h4>If something goes wrong</h4>
+      <p>The EA is supplied as it is. MetaTrader, brokers, internet connections and computers fail sometimes. We are not liable for trading losses, missed trades or losses caused by your broker, platform, VPS or settings. Where the law allows, our total liability to you is limited to what you paid us for the licence.</p>
+      <h4>Changes</h4>
+      <p>We may update these terms. The date at the top shows the latest version. The terms that applied when you paid cover that purchase.</p>
+    </article>
+  </div>
+</section>
+<section class="block legal" id="refunds" data-v="legal" hidden>
+  <div class="wrap">
+    <article class="card lg">
+      <h3>Refunds</h3>
+      <p>Your licence key is issued as soon as your payment is confirmed, and the file can be copied once downloaded. So:</p>
+      <ul><li><b>After the file is downloaded</b>, the payment is final. By downloading, you agree that you lose any right to cancel.</li>
+      <li><b>Paid but not downloaded yet?</b> Message us within 14 days of paying and we refund you.</li>
+      <li><b>Wrong MT5 account number?</b> If you made a typo, message us with your order number and we issue the key for the right account.</li>
+      <li><b>Paid the wrong amount?</b> Underpayments are completed or refunded once the payment processor confirms them. Overpayments are refunded.</li></ul>
+      <p>Refunds are sent in the coin you paid with, to a wallet address you give us, at the US dollar value you paid, less the network fee. Losing trades are not a reason for a refund.</p>
+    </article>
+  </div>
+</section>
+<section class="block legal" id="privacy" data-v="legal" hidden>
+  <div class="wrap">
+    <article class="card lg">
+      <h3>Privacy</h3>
+      <p>We collect only what each feature needs, and we never sell it.</p>
+      <h4>What we keep, and why</h4>
+      <ul><li><b>Buying a bot:</b> your email, MT5 account number, the coin you chose and any offer code. We use them to make your licence key, send your download and handle support. We record when your file is downloaded.</li>
+      <li><b>Payments:</b> NOWPayments processes the payment and tells us when it is confirmed. They have their own privacy policy. We never see your card or wallet keys.</li>
+      <li><b>Reviews:</b> your name, country, star rating and text are shown on the site. Your order number and email are used only to check you bought, and are never shown.</li>
+      <li><b>Trade with us:</b> your Phantom wallet address, email, deposits, transaction IDs, stake, weekly results and payouts. Your wallet signs a message to prove it is yours; this never moves funds. If you opt in, the leaderboard shows your earnings with the last four digits of your member ID only.</li>
+      <li><b>Managed accounts:</b> the details you send in the enquiry, and the trade history of your MT5 account once you connect it.</li>
+      <li><b>Selling an EA:</b> your name or brand, email, contact, payout wallet and the listing details. If you connect a tracked account, its trades are shown on your listing.</li></ul>
+      <h4>Your browser</h4>
+      <p>We use no ad or analytics trackers. Your browser remembers for this visit that you saw the offer pop-up. Fonts load from Google Fonts and the gold chart can load TradingView, which may see your IP address.</p>
+      <h4>Who else sees it</h4>
+      <p>Only the services we need to run the site: our host, our payment processor and our email provider. We share data with authorities only when the law requires it.</p>
+      <h4>How long we keep it</h4>
+      <p>Orders and pool records are kept as long as we need them for licences, accounting and the law. Other data is deleted when you ask, or when it is no longer needed.</p>
+      <h4>Your choices</h4>
+      <p>Ask us to see, correct or delete your data at any time. Message us on Telegram or on X at @Swifframp.</p>
+    </article>
+  </div>
+</section>
+<section class="block legal" id="risk" data-v="legal" hidden>
+  <div class="wrap">
+    <article class="card lg">
+      <h3>Risk disclosure</h3>
+      <ul><li><b>You can lose money.</b> Trading gold, forex and CFDs on margin carries a high level of risk and is not suitable for everyone. With some brokers you can lose more than your deposit.</li>
+      <li><b>Backtests are hypothetical.</b> They are run with hindsight on past prices. They leave out real-world slippage, outages and execution, and the same settings can lose in future months.</li>
+      <li><b>Lot scaling and compounding results</b> grow because the lot grows with the balance. At large sizes the MT5 tester fills trades no real broker would fill at those prices.</li>
+      <li><b>Prop firm figures are simulations</b> built from backtest trades. They are not passed challenges.</li>
+      <li><b>Demo results use virtual money.</b> Live trading can differ in spreads, fills and slippage.</li>
+      <li><b>No guarantee.</b> Past results, backtest or live, do not promise future profit. Expect losing days, weeks and months.</li>
+      <li><b>Only trade money you can afford to lose.</b> If you are unsure, speak to a licensed financial adviser.</li></ul>
+    </article>
+  </div>
+</section>
 <section class="block" id="community" data-v="community" hidden>
   <div class="wrap">
     <div class="head"><div><div class="eyebrow">Community</div><h2>Trade alongside us</h2>
@@ -1626,6 +1723,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     <p class="co-err" id="coErr" hidden></p>
     <button type="submit" class="btn primary wide" id="coPay">Continue to crypto payment</button>
     <p class="co-note" id="coNote">Next: the exact coin amount, wallet address and QR code. Once the payment is confirmed, the download button appears here and the link is emailed to you.</p>
+    <p class="co-note co-legal">By paying you agree to the <a href="#terms">Terms</a> and <a href="#refunds">Refund policy</a>.</p>
   </form>
 </dialog>
 
@@ -1738,6 +1836,7 @@ body:not([data-view="earnings"]) .inc{background:var(--grain),radial-gradient(90
     <div>
       <p><b>Risk disclosure.</b> Trading foreign exchange, gold and CFDs on margin carries a high level of risk and may not be suitable for all investors. You can lose more than your deposit with some brokers. Backtest results are hypothetical: they are produced with the benefit of hindsight, do not include all real-world trading conditions, and do not guarantee future results. Demo results use virtual money. Past performance is not a reliable indicator of future results.</p>
       <p>Swifframp sells software, not investment advice. Check that your broker or prop firm allows expert advisors.</p>
+      <p class="ft-legal"><a href="#terms">Terms</a><a href="#refunds">Refunds</a><a href="#privacy">Privacy</a><a href="#risk">Risk disclosure</a></p>
     </div>
   </div>
 </footer>
@@ -2400,7 +2499,7 @@ setInterval(()=>{ sessions(); if(LIVE && LIVE.news && LIVE.news.state==='waiting
 
 
 /* dashboard: one view at a time */
-const VIEWS={top:['home','Home'],chart:['chart','Gold chart'],overview:['home','Home'],performance:['results','Results'],method:['results','Results'],live:['live','Live account'],reviews:['reviews','Reviews'],prop:['prop','Prop firms'],radar:['news','News desk'],pool:['pool','Trade with us'],managed:['managed','Managed accounts'],earnings:['earnings','Your earnings'],market:['market','EA marketplace'],sell:['market','EA marketplace'],pricing:['pricing','Pricing'],install:['install','Install'],faq:['faq','FAQ'],community:['community','Community']};
+const VIEWS={top:['home','Home'],chart:['chart','Gold chart'],overview:['home','Home'],performance:['results','Results'],method:['results','Results'],live:['live','Live account'],reviews:['reviews','Reviews'],prop:['prop','Prop firms'],radar:['news','News desk'],pool:['pool','Trade with us'],managed:['managed','Managed accounts'],earnings:['earnings','Your earnings'],market:['market','EA marketplace'],sell:['market','EA marketplace'],pricing:['pricing','Pricing'],install:['install','Install'],faq:['faq','FAQ'],community:['community','Community'],terms:['legal','Terms'],refunds:['legal','Refunds'],privacy:['legal','Privacy'],risk:['legal','Risk disclosure']};
 function navOpen(on){ document.body.classList.toggle('nav-open',on); $('#menuBtn').setAttribute('aria-expanded',on?'true':'false'); }
 function route(id){
   id=(id||'').replace('#','')||'top'; const V=VIEWS[id]||VIEWS.top, v=V[0]; let n=0, tgt=null;
@@ -2413,7 +2512,8 @@ function route(id){
 document.addEventListener('click',e=>{
   const a=e.target.closest&&e.target.closest('a[href^="#"]'); if(!a) return;
   const h=a.getAttribute('href'); if(!VIEWS[h.slice(1)]) return;
-  e.preventDefault(); try{ history.pushState(null,'',h); }catch(_){} route(h);
+  e.preventDefault(); const dl=a.closest('dialog'); if(dl) dl.close(); try{ history.pushState(null,'',h); }catch(_){} route(h);
+  if(dl) setTimeout(()=>{ const t=document.getElementById(h.slice(1)); if(t&&!t.classList.contains('v1')) t.scrollIntoView(); else scrollTo(0,0); },60);
 });
 addEventListener('popstate',()=>route(location.hash));
 $('#menuBtn').onclick=()=>navOpen(!document.body.classList.contains('nav-open'));
