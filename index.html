@@ -2016,7 +2016,7 @@ function scaleCard(){
 function desk(k){
   const s=stats(k);
   $('#deskName').textContent=BOTS[k].name; $('#deskSub').textContent=BOTS[k].tab+' · $1,000 start';
-  const cells=[['Net profit',sgn(s.net)],['Profit factor',s.pf.toFixed(2)],['Max drawdown',s.ddp+'%'],['Recovery factor',s.rf.toFixed(1)],['Win rate',s.win+'%'],['Avg month',sgn(s.net/s.months)]];
+  const cells=[['Net profit',sgn(s.net)],['Profit factor',s.pf.toFixed(2)],['Deepest drop','−$'+Math.round(s.dd).toLocaleString('en-US')],['Recovery factor',s.rf.toFixed(1)],['Win rate',s.win+'%'],['Avg month',sgn(s.net/s.months)]];
   $('#deskStats').innerHTML=cells.map(c=>`<div><dt>${c[0]}</dt><dd class="num">${c[1]}</dd></div>`).join('');
   equity(k); mult(k); scaleCard();
   const mn={'01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'Jun','07':'Jul','08':'Aug','09':'Sep','10':'Oct','11':'Nov','12':'Dec'};
@@ -2729,7 +2729,7 @@ function pool(){
   ].filter(b=>DATA[b.id]);
   const DEMO={s149a:'Shadow 1.49a', s152:'Shadow 1.52'};
   const ownL=(p,sale)=>{ const s=stats(p.id); return {id:p.id, own:true, sale, name:p.name, demo:p.demo||DEMO[p.id]||p.name, shares:p.shares, seller:'Swifframp', market:'Gold', price:sale?p.price:null, summary:p.items[0]+'. '+p.items[1]+'.',
-    stats:{pf:s.pf, dd:s.ddp, win:s.win, trades:s.trades, net:s.net}, period:'Mar to Nov 2026, real ticks, $1,000 start', verified:true, vnote:'Built and run by Swifframp. Backtest on real ticks, Mar to Nov 2026.', items:p.items}; };
+    stats:{pf:s.pf, dd:s.ddp, ddUsd:s.dd, win:s.win, trades:s.trades, net:s.net}, period:'Mar to Nov 2026, real ticks, $1,000 start', verified:true, vnote:'Built and run by Swifframp. Backtest on real ticks, Mar to Nov 2026.', items:p.items}; };
   const OWN=PLANS.map(p=>ownL(p,true)).concat(MORE.map(p=>ownL(p,p.price!=null)));
   let THEIRS=[], S={q:'',ver:false,list:false,n:12};
   window.mkFind=id=>OWN.concat(THEIRS).find(x=>x.id===id);
@@ -2749,7 +2749,7 @@ function pool(){
     return `<article class="mk-card" style="--h:${hue(l)}"><div class="mk-cov"><i></i><i></i><i></i>${ver(l)}</div><div class="mk-body">
       <div class="mk-top">${logo(l)}<div class="mk-id"><b>${escH(l.name)}</b><span>${escH(l.seller)} · ${escH(l.market)}</span></div></div>
       <p class="mk-sum">${escH(l.summary)}</p>
-      <dl class="mk-nums"><div><dt>Profit factor</dt><dd class="num">${n1(st.pf)}</dd></div><div><dt>Drawdown</dt><dd class="num">${n1(st.dd,'%')}</dd></div><div><dt>Win rate</dt><dd class="num">${n1(st.win,'%')}</dd></div></dl>
+      <dl class="mk-nums"><div><dt>Profit factor</dt><dd class="num">${n1(st.pf)}</dd></div>${st.ddUsd!=null?`<div><dt>Deepest drop</dt><dd class="num">−$${Math.round(st.ddUsd).toLocaleString('en-US')}</dd></div>`:`<div><dt>Drawdown</dt><dd class="num">${n1(st.dd,'%')}</dd></div>`}<div><dt>Win rate</dt><dd class="num">${n1(st.win,'%')}</dd></div></dl>
       <div class="mk-act"><div class="mk-pr"><b class="num${l.price==null?' mk-ns':''}">${price(l)}</b><span>${l.price==null?'Testing on our demo':'One-time'}</span></div><button type="button" class="btn ghost-light" data-mkv="${escH(l.id)}">View</button>${buyBtn(l)}</div></div></article>`; }
   function draw(){ const q=S.q.toLowerCase(), rows=all().filter(l=>(!S.ver||l.verified)&&(!q||(l.name+' '+l.seller+' '+l.market+' '+l.summary).toLowerCase().includes(q)));
     g('mkGrid').className='mk-grid'+(S.list?' list':''); g('mkGrid').innerHTML=rows.slice(0,S.n).map(card).join('');
@@ -2769,7 +2769,7 @@ function pool(){
     <div class="card mk-hero" style="--h:${hue(l)}">${logo(l)}<div class="mk-id"><h3>${escH(l.name)}</h3><span>${escH(l.seller)} · ${escH(l.market)}</span></div>${ver(l)}<span class="mk-price num${l.price==null?' mk-ns':''}">${price(l)}</span>${buyBtn(l)}</div>
     <div class="card mk-note">${l.verified?`<b>Checked by Swifframp.</b> ${escH(l.vnote)}`:`<b>Seller's figures, not checked by us.</b> Ask the seller for the full report before you pay.`}</div>`;
   function viewOwn(l){ const k=l.id, s=stats(k), D=DATA[k];
-    let h=hero(l)+`<p class="mini-h"><span class="tag bt">Backtest</span> ${escH(l.period)}</p>`+kp([['Net profit',sgn(s.net)],['Profit factor',s.pf.toFixed(2)],['Max drawdown',s.ddp+'%'],['Win rate',s.win+'%'],['Trades',s.trades.toLocaleString()],['Avg month',sgn(s.net/s.months)]]);
+    let h=hero(l)+`<p class="mini-h"><span class="tag bt">Backtest</span> ${escH(l.period)}</p>`+kp([['Net profit',sgn(s.net)],['Profit factor',s.pf.toFixed(2)],['Deepest drop','−$'+Math.round(s.dd).toLocaleString('en-US')],['Win rate',s.win+'%'],['Trades',s.trades.toLocaleString()],['Avg month',sgn(s.net/s.months)]]);
     h+=`<div class="card mk-pan"><p class="mini-h">Balance</p><svg id="mkEq" role="img" aria-label="Backtest balance curve"></svg></div><div class="card mk-pan"><p class="mini-h">Profit by month</p><svg id="mkMo" viewBox="0 0 1000 200" role="img" aria-label="Backtest profit by month"></svg></div>`;
     const dm=((DATA.league&&DATA.league.bots)||[]).find(b=>b.name===l.demo);
     if(dm) h+=`<p class="mini-h"><span class="tag demo">Demo account</span> Virtual money, ${dNice(dm.from)} to ${dNice(DATA.league.to.slice(0,10))}${l.shares?` · shares its trade ID with ${escH(l.shares)}, so their trades are counted together`:''}</p>`+kp([['Net result',sgn(dm.net)],['Profit factor',dm.pf==null?'–':dm.pf.toFixed(2)],['Trades',dm.n.toLocaleString()],['Won',Math.round(100*dm.w/dm.n)+'%'],['Deepest drop',sgn(dm.dd)],['Days traded',dm.days]]);
